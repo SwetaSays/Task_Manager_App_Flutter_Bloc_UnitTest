@@ -36,3 +36,8 @@ Uses `shared_preferences` to persist tasks as JSON under key `TASKS_JSON`. On fi
 2.  flutter pub get
 3.  flutter run
 
+## App Preview
+
+![Task Manager Screenshot](assets/screenshots/task2.png)
+![Task Manager Screenshot](assets/screenshots/task4.png)
+![Task Manager Screenshot](assets/screenshots/task6.png)

@@ -1,16 +1,38 @@
-# task_manager
+# Task Manager (Flutter)
 
-A new Flutter project.
+A small Task Manager app built with Flutter using BLoC and Clean Architecture.  
+Features: task list, add/edit modal, status changes, filter, reorderable list, animated status chips, Material 3 theme, shared_preferences persistence.
 
-## Getting Started
+## Architecture Overview
 
-This project is a starting point for a Flutter application.
+Layers:
+- presentation — UI, `TasksBloc` (flutter_bloc), pages and widgets.
+- domain — Entities (`Task`), use cases (`GetTasks`, `AddTask`, `UpdateTask` etc), repository interface.
+- data — Repository implementation and local data source (uses `shared_preferences`) and `TaskModel`.
 
-A few resources to get you started if this is your first Flutter project:
+Repository pattern decouples data access from business logic. Use cases encapsulate operations to keep BLoC logic simple and testable.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## State Management
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`flutter_bloc` used. `TasksBloc` handles:
+- `LoadTasksEvent`, `AddTaskEvent`, `UpdateTaskEvent`, `ChangeTaskStatusEvent`, `FilterTasksEvent`, `ReorderTasksEvent`.
+State: `TasksState` (list of tasks, filter, loading, error).
+
+## UI/UX
+
+- Material 3 theme.
+- Responsive padding for tablet widths.
+- Reorderable list via `ReorderableListView`.
+- Add/Edit uses a modal bottom sheet with validation (title >= 3 chars).
+- Status chips are animated and color-coded.
+- Swipe actions: quick status changes via Dismissible.
+
+## Persistence
+
+Uses `shared_preferences` to persist tasks as JSON under key `TASKS_JSON`. On first run, app seeds with sample tasks.
+
+## Run
+1.  Pull request from git repository
+2.  flutter pub get
+3.  flutter run
+

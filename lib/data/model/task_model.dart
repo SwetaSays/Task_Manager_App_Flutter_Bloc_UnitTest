@@ -5,20 +5,13 @@ import '../../core/enums.dart';
 
 class TaskModel extends Task with EquatableMixin {
   TaskModel({
-    required String id,
-    required String title,
-    String? description,
-    TaskStatus status = TaskStatus.todo,
-    required DateTime dueDate,
-    int order = 0,
-  }) : super(
-          id: id,
-          title: title,
-          description: description,
-          status: status,
-          dueDate: dueDate,
-          order: order,
-        );
+    required super.id,
+    required super.title,
+    super.description,
+    super.status,
+    required super.dueDate,
+    super.order,
+  });
 
   factory TaskModel.fromEntity(Task t) {
     return TaskModel(
